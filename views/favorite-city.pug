@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Favorite City
+        link(rel="stylesheet", href="/styles.css")
+    body 
+        div.container
+            h1.city-name #{cityInfo.city}
+            h2.country-name #{cityInfo.country_name}
+            h3.region #{cityInfo.region}
+            h6.subregion #{cityInfo.subregion}
+            p.timezone #{cityInfo.timezone}
+            h3.time #{time}
+            h3 #{date}
+script.
+      const socket = new WebSocket('ws://localhost:8080'); // creating a new WebSocket
+
+      socket.addEventListener('message', function(event) {
+        document.querySelector('.time').textContent = event.data; // updating the time
+      });
+        

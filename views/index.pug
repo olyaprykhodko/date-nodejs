@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Day
+        link(rel="stylesheet", href="styles.css")
+        script(src='update-time.js')
+    body 
+        div.container
+            h2 Find out the time and weather in the world capitals
+            form(action="/search", method="GET")
+                input.input(type="text", name="city", placeholder="Enter a capital name")
+                button.btn(type="submit") Search
+            p.zone= currentTimezone
+            p.time= currentTime
+            p.date= currentDate
+            h2 Favorite Cities 
+            ul#favorites
+                each favorite in favorites
+                    li.list 
+                        a(href=`/favorites/${favorite.city}`) #{favorite.city}
+
+            

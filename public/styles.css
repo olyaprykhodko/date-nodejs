@@ -1,0 +1,86 @@
+html,
+body {
+  height: 100%;
+}
+body {
+  background: #1b1e23;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  color: #f4eed7;
+}
+
+.container {
+    position: relative;
+    text-align: center; /* Центрирование текста внутри контейнера */
+    
+}
+
+.container .zone {
+    display: block; /* Сделаем часовую зону блочным элементом */
+    margin-bottom: 10px; /* Добавим небольшой отступ снизу */
+}
+
+.container .time {
+    font-size: 60px; /* Увеличим размер шрифта времени */
+    margin: 0; /* Установим отступы по умолчанию на 0 */
+    margin-top: 5px; /* Добавим небольшой верхний отступ */
+    margin-bottom: 10px; /* Добавим отступ снизу */
+}
+
+.container .date {
+    font-size: 20px; /* Увеличим размер шрифта даты */
+}
+
+.container-city {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.city-link {
+    flex-basis: calc(33.33% - 20px); /* Устанавливаем ширину каждого элемента как 1/3 контейнера минус отступы */
+    margin: 10px; /* Добавляем отступы между элементами */
+    text-align: center; /* Выравниваем текст по центру */
+    padding: 10px; /* Добавляем внутренние отступы для улучшения внешнего вида */
+    background-color: #f0f0f0; /* Добавляем фоновый цвет для кнопок */
+    border-radius: 5px; /* Добавляем скругление углов для кнопок */
+    text-decoration: none; /* Убираем подчеркивание у ссылок */
+    color: #333; /* Цвет текста */
+}
+
+.city-link:hover {
+    background-color: #ccc; /* Изменяем цвет фона при наведении курсора */
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 10px;
+    border: 2px solid #f0f0f0;
+    padding: 3px;
+    text-align: center;
+}
+
+.input {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #f0f0f0;
+    width: 300px;
+    text-align: center;
+}
+
+.btn {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #f0f0f0;
+    background-color: #f0f0f0;
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+}
