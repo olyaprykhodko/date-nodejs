@@ -1,86 +1,230 @@
-html,
 body {
-  height: 100%;
-}
-body {
-  background: #1b1e23;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-family: sans-serif;
-  color: #f4eed7;
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background-color: #f0f0f0;
 }
 
 .container {
-    position: relative;
-    text-align: center; /* Центрирование текста внутри контейнера */
-    
+  display: grid;
+  grid-template-columns: auto 2fr auto;
+  grid-template-rows: min-content minmax(160px, auto) auto;
+  grid-template-areas:
+    'header header header'
+    'leftbar main rightbar'
+    'footer footer footer';
+  /* column-gap: 20px;
+  row-gap: 20px; */
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
-.container .zone {
-    display: block; /* Сделаем часовую зону блочным элементом */
-    margin-bottom: 10px; /* Добавим небольшой отступ снизу */
+.container.pages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Изменено на flex-start */
+  align-items: center;
+  margin-bottom: 0px;
 }
 
-.container .time {
-    font-size: 60px; /* Увеличим размер шрифта времени */
-    margin: 0; /* Установим отступы по умолчанию на 0 */
-    margin-top: 5px; /* Добавим небольшой верхний отступ */
-    margin-bottom: 10px; /* Добавим отступ снизу */
+.navigation {
+  grid-area: header;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-.container .date {
-    font-size: 20px; /* Увеличим размер шрифта даты */
+.navigation form {
+  display: flex;
+  align-items: center;
 }
 
-.container-city {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.navigation form input[type='text'] {
+  padding: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: calc(100% - 10px);
+  border-radius: 3px;
+  border: none;
 }
 
-.city-link {
-    flex-basis: calc(33.33% - 20px); /* Устанавливаем ширину каждого элемента как 1/3 контейнера минус отступы */
-    margin: 10px; /* Добавляем отступы между элементами */
-    text-align: center; /* Выравниваем текст по центру */
-    padding: 10px; /* Добавляем внутренние отступы для улучшения внешнего вида */
-    background-color: #f0f0f0; /* Добавляем фоновый цвет для кнопок */
-    border-radius: 5px; /* Добавляем скругление углов для кнопок */
-    text-decoration: none; /* Убираем подчеркивание у ссылок */
-    color: #333; /* Цвет текста */
+.navigation form .search-icon-button {
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
 }
 
-.city-link:hover {
-    background-color: #ccc; /* Изменяем цвет фона при наведении курсора */
+.navigation form .search-icon-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.navigation form .search-icon-button img:hover {
+  filter: brightness(200%);
+}
+
+.home {
+  background-color: #f0f0f0;
+  color: #333;
+  text-decoration: none;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-right: 150px;
+}
+/* .home,
+.dropdown {
+  margin-left: 10px;
+} */
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  min-width: 160px;
+  z-index: 1;
+  top: 100%;
+  left: 0;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #555;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.sidebar-left {
+  grid-area: leftbar;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.sidebar-right {
+  grid-area: rightbar;
+  margin-left: 20px;
+  margin-right: 30px;
+}
+
+.sidebar-left a,
+.sidebar-right a {
+  text-decoration: none;
+}
+
+.sidebar-left .city,
+.sidebar-right .city {
+  width: 300px;
+  background-color: #333;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+.sidebar .city h2.add-city {
+  margin: 0;
+}
+
+.sidebar .city h3.add-city {
+  margin: 5px 0;
+}
+
+.add-city-time {
+  font-size: 34px;
+  font-weight: 600;
+}
+
+/* main content (time, city etc) */
+.main-content {
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-self: center;
+}
+
+.city-name {
+  font-size: 46px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.timezone {
+  font-size: 44px;
+  font-weight: 600;
+}
+
+.time {
+  font-size: 120px;
+  font-weight: 700;
+  font-family: 'Montserrat';
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.timezone.main {
+  margin-top: 5px;
+}
+
+.time.main {
+  margin-top: 5px;
+}
+
+.date {
+  font-size: 24px;
+  font-weight: 600;
+}
+.add-to-fav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.add-to-fav.city {
+  margin-top: 10px;
+  text-decoration: none;
+  /* list-style: none; */
 }
 
 .list {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    margin: 10px;
-    border: 2px solid #f0f0f0;
-    padding: 3px;
-    text-align: center;
+  list-style: none;
+  padding: 0;
 }
 
-.input {
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid #f0f0f0;
-    width: 300px;
-    text-align: center;
+.block {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
-.btn {
-    margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid #f0f0f0;
-    background-color: #f0f0f0;
-    text-align: center;
-    text-decoration: none;
-    color: #333;
+.text {
+  font-size: 20px;
 }

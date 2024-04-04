@@ -3,22 +3,45 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Day
+        title Date
         link(rel="stylesheet", href="styles.css")
-        script(src='update-time.js')
+        //- script(src='update-time.js')
     body 
-        div.container
-            h2 Find out the time and weather in the world capitals
-            form(action="/search", method="GET")
-                input.input(type="text", name="city", placeholder="Enter a capital name")
-                button.btn(type="submit") Search
-            p.zone= currentTimezone
-            p.time= currentTime
-            p.date= currentDate
-            h2 Favorite Cities 
-            ul#favorites
-                each favorite in favorites
-                    li.list 
-                        a(href=`/favorites/${favorite.city}`) #{favorite.city}
+        .container
+            .navigation
+                form(action="/city", method="GET")
+                    input(type="text", name="city", placeholder="Search capital")
+                    button.search-icon-button(type='button', onclick="submitForm()")
+                        img(src='https://cdn4.iconfinder.com/data/icons/music-ui-solid-24px/24/search-3-28.png', alt='search icon')  
+                a.home(href="/") DATE
+                .dropdown
+                    img.drop-btn(src='https://cdn0.iconfinder.com/data/icons/user-interface-2063/24/UI_Essential_icon_expanded-01-48.png', alt='dropdown menu')
+                    .dropdown-content
+                        a(href="/favorites") Favorites
+                        a(href="/about") About
+                        a(href='/how-to-use') How to use
+                        a(href='/contact') Contact
 
-            
+
+            .main-content
+                p= 'YOUR CURRENT TIMEZONE IS: ' 
+                p.timezone.main= currentTimezone
+                p= 'EXACT TIME IS: '
+                p.time.main= currentTime
+                p.date= currentDate
+                p.weather Current temperature is #{weather.temp}°C, feels like #{weather.feels_like}°C
+                ul.favorites
+                    each favorite in favorites
+                        li.list 
+                            if favorite.city
+                                a.add-to-fav.city(href=`/city?city=${favorite.city}`) #{(favorite.city).toUpperCase()}
+
+    script.
+        const socket = new WebSocket('ws://localhost:8080');
+        socket.onmessage = function(event) {
+            document.querySelector('.time').textContent = event.data;
+        }
+
+        function submitForm() {
+          document.querySelector('form').submit();
+        }

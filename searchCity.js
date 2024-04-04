@@ -1,43 +1,37 @@
-async function searchCity(capital) {
-  const searchCity = await fetch(
-    `https://restcountries.com/v3.1/capital/${capital}`
-  ).then((response) => response.json());
-
-  const cityInfo = searchCity[0];
-  //   console.log(cityInfo.capital);
-  if (!cityInfo) {
-    return { error: 'City not found or not enough data' };
-  }
-
-  let utc = cityInfo.timezones[0];
-  if (capital === 'London' || capital === 'london') utc = cityInfo.timezones[5];
-
-  const allData = await fetch('https://restcountries.com/v3.1/all').then(
-    (response) => response.json()
-  );
-  // console.log(allData);
-  const capitalsWithTheSameTimezone = [];
-
-  allData.forEach((country) => {
-    country.timezones.forEach((timezone) => {
-      if (timezone === utc) {
-        capitalsWithTheSameTimezone.push({
-          cityName: country.capital,
-          countryName: country.name.common,
-          timezone: timezone,
-        });
-      }
-    });
+async function searchCity(city) {
+  let URL = 'https://api.api-ninjas.com/v1/';
+  const requestCity = await fetch(URL + 'timezone?city=' + city, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Api-Key': process.env.API_KEY,
+    },
   });
 
-  // console.log(capitalsWithTheSameTimezone);
+  const requestTime = await fetch(URL + 'worldtime?city=' + city, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Api-Key': process.env.API_KEY,
+    },
+  });
+
+  const requestWeather = await fetch(URL + 'weather?city=' + city, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Api-Key': process.env.API_KEY,
+    },
+  });
+
+  const responseCity = await requestCity.json();
+  const responseTime = await requestTime.json();
+  const responseWeather = await requestWeather.json();
+
   return {
-    city: cityInfo.capital.join(''),
-    countryName: cityInfo.name.common,
-    timezone: utc,
-    capitalsWithTheSameTimezone: capitalsWithTheSameTimezone,
-    subregion: cityInfo.subregion,
-    region: cityInfo.region,
+    responseTime,
+    responseCity,
+    responseWeather,
   };
 }
 
