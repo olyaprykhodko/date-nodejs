@@ -12,8 +12,6 @@ body {
     'header header header'
     'leftbar main rightbar'
     'footer footer footer';
-  /* column-gap: 20px;
-  row-gap: 20px; */
   gap: 20px;
   justify-content: center;
   align-items: center;
@@ -22,7 +20,7 @@ body {
 .container.pages {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Изменено на flex-start */
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 0px;
 }
@@ -79,11 +77,6 @@ body {
   font-size: 18px;
   margin-right: 150px;
 }
-/* .home,
-.dropdown {
-  margin-left: 10px;
-} */
-
 .dropdown {
   position: relative;
 }
@@ -211,7 +204,6 @@ body {
 .add-to-fav.city {
   margin-top: 10px;
   text-decoration: none;
-  /* list-style: none; */
 }
 
 .list {
