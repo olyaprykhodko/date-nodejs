@@ -103,6 +103,8 @@ app.get('/city', async (req, res) => {
       'dddd, D MMMM, YYYY'
     );
 
+    const data = await searchCity(cityName);
+    const weather = data.responseWeather;
     const cities = await citiesTime();
     console.log(cities);
 
@@ -117,6 +119,7 @@ app.get('/city', async (req, res) => {
       timezone,
       time,
       date,
+      weather,
       buttonText,
       cities,
     });

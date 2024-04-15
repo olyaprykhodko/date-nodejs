@@ -193,6 +193,7 @@ body {
 .date {
   font-size: 24px;
   font-weight: 600;
+  margin-bottom: 5px;
 }
 .add-to-fav {
   display: flex;
@@ -225,6 +226,30 @@ body {
   flex-direction: column;
 }
 
-.text {
-  font-size: 20px;
+.text-fav {
+  margin-top: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.text-about {
+  margin-top: 20px;
+  margin-bottom: 5px;
+  padding: 10px;
+  line-height: 1.5;
+  font-size: 18px;
+  color: #333;
+  text-indent: 15px;
+}
+
+.weather {
+  font-size: 26px;
+}
+
+.about {
+  color: #333;
+  font-size: 16px;
 }

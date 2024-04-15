@@ -36,10 +36,11 @@ html(lang="en")
             h3.add-city-time #{cities['Tokyo']}
 
       .main-content
-        h1.city-name #{city}
+        h1.city-name #{city.toUpperCase()}
         p.timezone #{timezone}
         p.time #{time}
         p.date #{date}
+        p.weather #{weather.temp}°C
         button.add-to-fav(type="button", onclick=`addToFavorites('${city}', '${timezone}')`) #{buttonText}
 
       .sidebar-right
